@@ -1,0 +1,28 @@
+#!/bin/bash
+# YY-d-m
+firstdate='2021-04-28'
+today=$(date +%s)
+tocompare=$(date --date="$firstdate" +%s)
+
+let jumpdays=0
+dates=()
+
+while [ ! $tocompare -ge $today ]
+do
+	nextday=$(date "+%a %d %b %Y" --date="$firstdate+${jumpdays} day")
+	nameday=$(date "+%a" --date="$firstdate+${jumpdays} day")
+	tocompare=$(date --date="$firstdate+${jumpdays} day" +%s)
+
+	if [ ! $nameday == 'vie' ]
+	then
+		let jumpdays=$jumpdays+8
+	else
+		let jumpdays=$jumpdays+3
+	fi
+	
+	dates[${#dates[@]}]=$nextday
+done
+
+echo "First homeoffice day: ${dates[0]}"
+echo "Last homeoffice day: ${dates[-2]}"
+echo "Next homeoffice day: ${dates[-1]}"
