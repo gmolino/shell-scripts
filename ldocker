@@ -1,0 +1,9 @@
+ldocker() {
+        containerstarted=$(history | grep ' docker start ' | tail -1 | cut -d ' ' -f 6-)
+        echo "docker start "$containerstarted
+
+        for container in $(echo $containerstarted | tr " " "\n")
+        do
+                docker start ${container}
+        done
+}
