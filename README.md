@@ -16,3 +16,6 @@ Ejecuta el último `docker start <containers>` independientemente del número de
 
 ## alias
 + **update**: Actualiza sin confirmación sistemas ARCH Linux
+
+## homeoffice
+Partiendo de una fecha dada *firstdate*, recorre el calendario sumando 8 días, obviando los fines de semana y devuelve el último y el futuro.
