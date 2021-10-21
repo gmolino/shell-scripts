@@ -9,6 +9,6 @@ Cambia de directorio con `cs <dir>` para salvar la ruta.
 Regresa a la ruta almacenada con `cs`.    
 *Función en bash para incluir en .zshrc.*   
 
-#ldocker
+## ldocker
 Ejecuta el último `docker start <containers>` independientemente del número de contedores.    
 *Función en bash para incluir en .zshrc.*   
