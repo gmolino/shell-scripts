@@ -12,3 +12,6 @@ Regresa a la ruta almacenada con `cs`.
 ## ldocker
 Ejecuta el último `docker start <containers>` independientemente del número de contedores.    
 *Función en bash para incluir en .zshrc.*   
+
+## alias
+**update** Actualiza sin confirmación sistemas ARCH Linux
