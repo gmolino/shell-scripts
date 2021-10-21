@@ -1,3 +1,4 @@
+#!/bin/bash
 cs() {
         if [ "$1" ]
         then
