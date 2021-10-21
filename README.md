@@ -14,4 +14,4 @@ Ejecuta el último `docker start <containers>` independientemente del número de
 *Función en bash para incluir en .zshrc.*   
 
 ## alias
-**update** Actualiza sin confirmación sistemas ARCH Linux
++ **update**: Actualiza sin confirmación sistemas ARCH Linux
