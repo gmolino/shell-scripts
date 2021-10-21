@@ -1,0 +1,11 @@
+#!/bin/sh
+# -*- ENCODING: UTF-8 -*-
+
+listcont=$(docker ps -a | grep 'Up' | awk '{out = $1" "$2; print out}')
+IFS=$'\n'
+for row in $listcont
+do
+    inspect=$(docker inspect ${row:0:12} | grep IPAddress | grep -v "Secondary\|\"\"" | cut -d '"' -f 4)
+    echo $row $inspect
+done
+exit 0
