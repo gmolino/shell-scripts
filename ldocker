@@ -1,3 +1,4 @@
+#!/bin/bash
 ldocker() {
         containerstarted=$(history | grep ' docker start ' | tail -1 | cut -d ' ' -f 6-)
         echo "docker start "$containerstarted
