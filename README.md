@@ -7,7 +7,7 @@ Retorna todos los contenedores iniciados y ip address.
 ## cs
 Cambia de directorio con `cs <dir>` para salvar la ruta.    
 Regresa a la ruta almacenada con `cs`.    
-El fichero ~/.cs almacena la ruta.   
+El fichero *~/.cs* almacena la ruta.   
 *Función en bash para incluir en .zshrc.*   
 
 ## ldocker
