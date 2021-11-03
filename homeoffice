@@ -1,28 +1,51 @@
 #!/bin/bash
 # YY-d-m
 firstdate='2021-04-28'
-today=$(date +%s)
 tocompare=$(date --date="$firstdate" +%s)
 
 let jumpdays=0
+let nnext=0
 dates=()
+
+showhelp() {
+    echo "Usage: homeoffice [OPTION]"
+    echo "Show the beggining, last and following homeoffice dates each eight days without weekends."
+    echo "  -w [int]    Show future date in 'int' weeks."
+    echo "  -f [date]   Beginning date. Format (YY-m-d). Default: '$firstdate'"
+    echo "  -h      Help"
+    exit 0
+}
+
+while getopts hw:f: flag
+do
+    case "${flag}" in
+	h) showhelp;;
+	w) nnext=${OPTARG};;
+  	f) firstdate=${OPTARG};;
+    esac
+done
+
+today=$(date --date="${nnext} week" +%s)
 
 while [ ! $tocompare -ge $today ]
 do
-	nextday=$(date "+%a %d %b %Y" --date="$firstdate+${jumpdays} day")
-	nameday=$(date "+%a" --date="$firstdate+${jumpdays} day")
-	tocompare=$(date --date="$firstdate+${jumpdays} day" +%s)
+    nextday=$(date "+%a %d %b %Y" --date="$firstdate+${jumpdays} day")
+    nameday=$(date "+%a" --date="$firstdate+${jumpdays} day")
+    tocompare=$(date --date="$firstdate+${jumpdays} day" +%s)
 
-	if [ ! $nameday == 'vie' ]
-	then
-		let jumpdays=$jumpdays+8
-	else
-		let jumpdays=$jumpdays+3
-	fi
-	
-	dates[${#dates[@]}]=$nextday
+    if [ ! $nameday == 'vie' ]
+    then
+        let jumpdays=$jumpdays+8
+    else
+        let jumpdays=$jumpdays+3
+    fi
+    
+    dates[${#dates[@]}]=$nextday
 done
-
 echo "First homeoffice day: ${dates[0]}"
-echo "Last homeoffice day: ${dates[-2]}"
-echo "Next homeoffice day: ${dates[-1]}"
+if [ ! $nnext == 0 ]; then
+    echo "In $nnext homeoffice weeks: ${dates[-1]}"
+else
+    echo "Last homeoffice day: ${dates[-2]}"
+    echo "Next homeoffice day: ${dates[-1]}"
+fi
